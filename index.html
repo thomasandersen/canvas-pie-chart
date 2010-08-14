@@ -3,14 +3,53 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Canvas Pie Chart</title>
+    <script type="text/javascript" src="./js/canvas-pie-chart.js">//</script>
 </head>
 <body>
+<h1>Canvas Pie Chart</h1>
 <section>
-    <div>
-        <canvas id="canvas" width="400" height="400">
-            This text is displayed if your browser does not support HTML5 Canvas.
-        </canvas>
+    <div id="canvas-container-1">
+        <!-- -->
     </div>
+    <div id="canvas-container-2">
+        <!-- -->
+    </div>
+    <div id="canvas-container-3">
+        <!-- -->
+    </div>
+
+    <script type="text/javascript">
+        var exampleData_1 = [
+            { 'label' : 'Firefox', 'value' : 39.1, 'color' : '#6685A3' },
+            { 'label' : 'Safari', 'value' : 2.2, 'color' : '#99AEC2' },
+            { 'label' : 'All others', 'value' : 4.9, 'color' : '#CCD7E1' },
+            { 'label' : 'IE 6', 'value' : 29.9, 'color' : '#2B5564' },
+            { 'label' : 'IE 7', 'value' : 24.9, 'color' : '#002F4D' }
+	    ];
+
+        var canvasPieChart_1 = new CanvasPieChart( 'canvas-container-1', exampleData_1, { 'width': 200, 'height' : 200 } );
+
+        var exampleData_2 = [
+	    	{ 'label' : 'Other', 'value' : 8, 'color' : '#009AD5' },
+	    	{ 'label' : 'Heat spacing', 'value' : 31, 'color' : '#D98219' },
+	    	{ 'label' : 'Space cooling', 'value' : 12, 'color' : '#008B43' },
+	    	{ 'label' : 'Water heating', 'value' : 12, 'color' : '#0D68A9' },
+	    	{ 'label' : 'Lighting', 'value' : 12, 'color' : '#F3C208' },
+	    	{ 'label' : 'Computer and electronic', 'value' : 12, 'color' : '#861F84' },
+	    	{ 'label' : 'Appliances', 'value' : 12, 'color' : '#7CB237' },
+	    	{ 'label' : 'Refrigeration', 'value' : 12, 'color' : '#D9181F' }
+	    ];
+
+        var canvasPieChart_2 = new CanvasPieChart( 'canvas-container-2', exampleData_2, { 'width': 200, 'height' : 200 } );
+
+        var exampleData_3 = [
+	    	{ 'label' : 'Asia', 'value' : 116.006, 'color' : '#FF9900' },
+	    	{ 'label' : 'Americas', 'value' : 149.759, 'color' : '#3366FF' },
+	    	{ 'label' : 'Europe', 'value' : 97.387, 'color' : '#339966' }
+	    ];
+
+        var canvasPieChart_3 = new CanvasPieChart( 'canvas-container-3', exampleData_3, { 'width': 200, 'height' : 200 } );
+    </script>
 </section>
 </body>
 </html>
