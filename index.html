@@ -17,6 +17,9 @@
     <div id="canvas-container-3">
         <!-- -->
     </div>
+    <div id="canvas-container-4">
+        <!-- -->
+    </div>
 
     <script type="text/javascript">
         var exampleData_1 = [
@@ -57,6 +60,17 @@
         var canvasPieChart_3 = new CanvasPieChart( 'canvas-container-3', exampleData_3, {
             'width': 50,
             'height' : 50
+        } );
+
+        var exampleData_4 = [
+	    	{ 'label' : 'Asia', 'value' : 116.006, 'color' : '#FF9900' },
+	    	{ 'label' : 'Americas', 'value' : 149.759, 'color' : '#FF9900' },
+	    	{ 'label' : 'Europe', 'value' : 97.387, 'color' : '#339966' }
+	    ];
+
+        var canvasPieChart_4 = new CanvasPieChart( 'canvas-container-4', exampleData_4, {
+            'width': 300,
+            'height' : 300
         } );
     </script>
 </section>

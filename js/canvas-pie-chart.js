@@ -3,6 +3,7 @@
 function CanvasPieChart( containerElemId, data, options )
 {
     var t = this;
+
     t.data = data || [];
     t.doc = options.doc || document;
     t.canvasWrapper = t.doc.getElementById( containerElemId );
@@ -11,6 +12,19 @@ function CanvasPieChart( containerElemId, data, options )
     t.height = options.height || 400;
     t.strokeLineWidth = options.strokeLineWidth || 2;
 
+    
+    function getTotal()
+    {
+        var total = 0, i;
+
+        for ( i = 0; i < t.data.length; i++ )
+        {
+            total += (typeof t.data[i].value == 'number') ? t.data[i].value : 0;
+        }
+
+        return total;
+    }
+    
 
     function createCanvas()
     {
@@ -39,24 +53,11 @@ function CanvasPieChart( containerElemId, data, options )
     }
 
 
-    function getTotal()
-    {
-        var total = 0, i;
-
-        for ( i = 0; i < t.data.length; i++ )
-        {
-            total += (typeof t.data[i].value == 'number') ? t.data[i].value : 0;
-        }
-
-        return total;
-    }
-
-
-    function createPie() {
+    function createPieChart() {
         var ctx,
                 arcStartAngle,
                 arcEndAngle,
-                total = getTotal(),
+                total,
                 width,
                 height,
                 centerX,
@@ -65,7 +66,9 @@ function CanvasPieChart( containerElemId, data, options )
                 value,
                 color,
                 radius,
-                i;
+                i,
+                index,
+                val;
 
         ctx = t.canvas.getContext("2d");
         width = t.canvas.width;
@@ -73,22 +76,10 @@ function CanvasPieChart( containerElemId, data, options )
         centerX = width / 2;
         centerY = height / 2;
         radius = width / 2;
+        total = getTotal();
+        index = 0;
 
         ctx.clearRect( 0, 0, width, height );
-
-
-        var index = 0, thisvalue;
-
-
-        
-        var imageMap = t.doc.createElement('map');
-        imageMap.name = containerElemId + '-image-map';
-        t.canvasWrapper.appendChild(imageMap);
-
-        var pieVertices = 12; // Does not include the center vertex
-        var arcIncrementMultiplier = 1 / pieVertices;
-
-        var area, j;
 
         for ( i = 0; i < t.data.length; i++ )
         {
@@ -96,12 +87,10 @@ function CanvasPieChart( containerElemId, data, options )
             label = t.data[i].label;
             value = t.data[i].value;
             color = t.data[i].color;
+            val = value / total;
 
-            thisvalue = value / total;
-
-            arcStartAngle = Math.PI * (- 0.5 + 2 * index); // -0.5 sets set the start to be top
-            arcEndAngle = Math.PI * (- 0.5 + 2 * (index + thisvalue));
-
+            arcStartAngle = Math.PI * ( - 0.5 + 2 * index ); // -0.5 sets set the start to be top
+            arcEndAngle = Math.PI * ( - 0.5 + 2 * ( index + val ) );
             
             ctx.lineWidth = t.strokeLineWidth;
             ctx.strokeStyle = "#FFFFFF";
@@ -114,6 +103,48 @@ function CanvasPieChart( containerElemId, data, options )
             ctx.fill();
             ctx.stroke();
             
+            index += val; // increment progress tracker
+        }
+    }
+
+    function createImageMap()
+    {
+       var ctx,
+                arcStartAngle,
+                arcEndAngle,
+                total = getTotal(),
+                label,
+                value,
+                radius,
+                i,
+                index,
+                val,
+                pieVertices,
+                arcIncrementMultiplier,
+                imageMap,
+                area,
+                j;
+
+        radius = t.canvas.width / 2;
+        pieVertices = 12; // Does not include the center vertex
+        arcIncrementMultiplier = 1 / pieVertices;
+        index = 0;
+        
+        imageMap = t.doc.createElement('map');
+        imageMap.name = containerElemId + '-image-map';
+
+        t.canvasWrapper.appendChild(imageMap);
+
+        for ( i = 0; i < t.data.length; i++ )
+        {
+            label = t.data[i].label;
+            value = t.data[i].value;
+
+            val = value / total;
+
+            arcStartAngle = Math.PI * (- 0.5 + 2 * index); // -0.5 sets set the start to be top
+            arcEndAngle = Math.PI * (- 0.5 + 2 * (index + val));
+
             var arcIncrement = (arcEndAngle - arcStartAngle) * arcIncrementMultiplier;
 
 			var xx = radius + Math.round(Math.cos(arcStartAngle) * radius);
@@ -122,28 +153,29 @@ function CanvasPieChart( containerElemId, data, options )
 			var coord = [];
 			var coordIndex = 1;
 
-			for (j = 0; j < ((pieVertices * 2) - 2); j = j+2) {
+			for ( j = 0; j < ((pieVertices * 2) - 2); j = j+2 ) {
 				var arcAngle = arcStartAngle + arcIncrement * coordIndex;
-				coord[j] = radius + Math.round(Math.cos(arcAngle) * radius);
-				coord[j+1] = radius + Math.round(Math.sin(arcAngle) * radius);
+				coord[j] = radius + Math.round( Math.cos( arcAngle ) * radius );
+				coord[j+1] = radius + Math.round( Math.sin( arcAngle ) * radius );
 				coordIndex++;
 			}
 
-			var xxEnd = radius + Math.round(Math.cos(arcEndAngle) * radius);
-			var yyEnd = radius + Math.round(Math.sin(arcEndAngle) * radius);
+			var xxEnd = radius + Math.round( Math.cos(arcEndAngle ) * radius );
+			var yyEnd = radius + Math.round( Math.sin(arcEndAngle ) * radius );
 
-            area = t.doc.createElement('area');
+            area = t.doc.createElement( 'area' );
             area.shape = 'poly';
-            area.coords = radius + ',' + radius + ','  + xx + ',' + yy + ',' + coord.join(',') +  ',' + xxEnd + ',' + yyEnd;
+            area.coords = radius + ',' + radius + ','  + xx + ',' + yy + ',' + coord.join( ',' ) +  ',' + xxEnd + ',' + yyEnd;
 
             area.title = label;
 
-            imageMap.appendChild(area);
+            imageMap.appendChild( area );
 
-            index += thisvalue; // increment progress tracker
+            index += val; // increment progress tracker
         }
     }
-
+    
     createCanvas();
-    createPie();
+    createPieChart();
+    createImageMap();
 }
