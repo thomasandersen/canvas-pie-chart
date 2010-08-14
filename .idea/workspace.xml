@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="33998def-925a-4fd6-86ff-c7f6321fac30" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/canvas-pie-chart.js" afterPath="$PROJECT_DIR$/js/canvas-pie-chart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/canvas-pie-chart.js" afterPath="$PROJECT_DIR$/js/canvas-pie-chart.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/license.txt" />
     </list>
     <ignored path="$USER_HOME_GRAILS$/" />
     <ignored path="$USER_HOME_GRIFFON$/" />
@@ -73,19 +73,26 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="52" selection-start="1476" selection-end="1476" vertical-scroll-proportion="-24.782608">
+            <state line="45" column="146" selection-start="1700" selection-end="1700" vertical-scroll-proportion="-18.26087">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="canvas-pie-chart.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="canvas-pie-chart.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/canvas-pie-chart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="31" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.16030534">
-              <folding>
-                <marker date="1281798522000" expanded="true" signature="1360:2341" placeholder="/*...*/" />
-              </folding>
+            <state line="74" column="26" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="license.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/license.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="475" column="56" selection-start="25223" selection-end="25223" vertical-scroll-proportion="0.44656488">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,8 +121,10 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/README" />
-        <option value="$PROJECT_DIR$/js/canvas-pie-chart.js" />
+        <option value="$PROJECT_DIR$/js/test.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/canvas-pie-chart.js" />
+        <option value="$PROJECT_DIR$/license.txt" />
       </list>
     </option>
   </component>
@@ -395,7 +404,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Directory structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest changes" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -411,6 +420,7 @@
     <MESSAGE value="Updated README" />
     <MESSAGE value="Added IDEA files" />
     <MESSAGE value="Directory structure" />
+    <MESSAGE value="Latest changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -425,17 +435,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="52" selection-start="1476" selection-end="1476" vertical-scroll-proportion="-24.782608">
+        <state line="45" column="146" selection-start="1700" selection-end="1700" vertical-scroll-proportion="-18.26087">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/canvas-pie-chart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="31" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.16030534">
-          <folding>
-            <marker date="1281798522000" expanded="true" signature="1360:2341" placeholder="/*...*/" />
-          </folding>
+        <state line="74" column="26" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/license.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="475" column="56" selection-start="25223" selection-end="25223" vertical-scroll-proportion="0.44656488">
+          <folding />
         </state>
       </provider>
     </entry>

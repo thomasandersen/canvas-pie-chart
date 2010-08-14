@@ -12,6 +12,7 @@ function CanvasPieChart( containerElemId, data, options )
     t.canvas = null;
     t.width = options.width || 400;
     t.height = options.height || 400;
+    t.strokeLineWidth = options.strokeLineWidth || 2;
 
 
     function createCanvas()
@@ -42,7 +43,7 @@ function CanvasPieChart( containerElemId, data, options )
 
     function createPie() {
         var ctx,
-                lastend = 0,
+                lastEnd = 0,
                 total = getTotal(),
                 width,
                 height,
@@ -50,15 +51,18 @@ function CanvasPieChart( containerElemId, data, options )
                 centerY,
                 label,
                 value,
-                color;
+                color,
+                radius,
+                i;
 
         ctx = t.canvas.getContext("2d");
         width = t.canvas.width;
         height = t.canvas.height;
         centerX = width / 2;
         centerY = height / 2;
+        radius = width / 2;
 
-        ctx.clearRect(0, 0, width, height);
+        ctx.clearRect( 0, 0, width, height );
 
         /*
         var shadowOffset = 3;
@@ -68,37 +72,27 @@ function CanvasPieChart( containerElemId, data, options )
         ctx.fill();
         */
 
-        for ( var i = 0; i < t.data.length; i++ )
+        for ( i = 0; i < t.data.length; i++ )
         {
             label = t.data[i].label;
             value = t.data[i].value;
             color = t.data[i].color;
 
-            ctx.lineWidth = 2;
+            ctx.lineWidth = t.strokeLineWidth;
             ctx.strokeStyle = "#FFFFFF";
             ctx.fillStyle = color;
 
             ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.arc(centerX, centerY, centerY, lastend, lastend + (Math.PI * 2 * (value / total)), false);
-            ctx.lineTo(centerX, centerY);
+            ctx.moveTo( centerX, centerY );
+            ctx.arc( centerX, centerY, radius, lastEnd, lastEnd + ( Math.PI * 2 * ( value / total ) ), false );
+            ctx.lineTo( centerX, centerY );
             ctx.fill();
             ctx.stroke();
 
-            lastend += Math.PI * 2 * (value / total);
-
+            lastEnd += Math.PI * 2 * ( value / total );
         }
-
     }
 
     createCanvas();
     createPie();
 }
-
-/*
-CanvasPieChart.prototype.createCanvas = function()
-{
-    alert(this.containerElem);
-    
-};
-*/
