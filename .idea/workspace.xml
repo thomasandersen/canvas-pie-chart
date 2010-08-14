@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="33998def-925a-4fd6-86ff-c7f6321fac30" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/canvas-pie-chart.js" afterPath="$PROJECT_DIR$/js/canvas-pie-chart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/license.txt" />
     </list>
     <ignored path="$USER_HOME_GRAILS$/" />
     <ignored path="$USER_HOME_GRIFFON$/" />
@@ -82,25 +80,25 @@
       <file leaf-file-name="canvas-pie-chart.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/canvas-pie-chart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="26" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.0">
+            <state line="68" column="39" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="license.txt" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="license.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/license.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="475" column="56" selection-start="25223" selection-end="25223" vertical-scroll-proportion="0.44656488">
+            <state line="475" column="56" selection-start="25223" selection-end="25223" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="README" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="30" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0">
+            <state line="4" column="65" selection-start="131" selection-end="131" vertical-scroll-proportion="0.07633588">
               <folding />
             </state>
           </provider>
@@ -120,11 +118,11 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/js/test.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/canvas-pie-chart.js" />
         <option value="$PROJECT_DIR$/license.txt" />
+        <option value="$PROJECT_DIR$/README" />
       </list>
     </option>
   </component>
@@ -420,19 +418,13 @@
     <MESSAGE value="Updated README" />
     <MESSAGE value="Added IDEA files" />
     <MESSAGE value="Directory structure" />
+    <MESSAGE value="Added license" />
     <MESSAGE value="Latest changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="30" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="45" column="146" selection-start="1700" selection-end="1700" vertical-scroll-proportion="-18.26087">
@@ -440,16 +432,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/canvas-pie-chart.js">
+    <entry file="file://$PROJECT_DIR$/license.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="26" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.0">
+        <state line="475" column="56" selection-start="25223" selection-end="25223" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/license.txt">
+    <entry file="file://$PROJECT_DIR$/js/canvas-pie-chart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="475" column="56" selection-start="25223" selection-end="25223" vertical-scroll-proportion="0.44656488">
+        <state line="68" column="39" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="65" selection-start="131" selection-end="131" vertical-scroll-proportion="0.07633588">
           <folding />
         </state>
       </provider>
