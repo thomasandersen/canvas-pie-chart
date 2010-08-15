@@ -1,25 +1,61 @@
-/**/
+/**
+ * CanvasPieChart.js
+ *
+ * Copyright 2010, Thomas Andersen
+ * Released under LGPL License.
+ *
+ * Contributing: http://github.com/thomasandersen/canvas-pie-chart
+ */
 
-function CanvasPieChart( containerElemId, data, options )
+function CanvasPieChart( containerElemId, data, userOptions )
 {
-    var t = this;
+    var defaultOptions = {
+        doc : document,
+        width : 400,
+        height : 400,
+        strokeLineWidth : 2,
+        strokeLineColor : '#FFFFFF',
+        ticks : true,
+        tooltip : true,
+        font : 'Arial',
+        fontSize : 11,
+        fontColor : '#FFFFFF'
+    };
+    var options = {};
 
-    t.data = data || [];
-    t.doc = options.doc || document;
-    t.canvasWrapper = t.doc.getElementById( containerElemId );
-    t.canvas = null;
-    t.width = options.width || 400;
-    t.height = options.height || 400;
-    t.strokeLineWidth = options.strokeLineWidth || 2;
+    setOptions( userOptions );
 
-    
+    var data = data || [];
+    var canvas = null;
+    var canvasWrapper = options.doc.getElementById( containerElemId );
+
+    function setOptions( o )
+    {
+        if ( typeof userOptions == 'object' )
+        {
+            var key;
+
+            for ( key in o )
+            {
+                defaultOptions[key] = o[key];
+            }
+
+            options = defaultOptions;
+        }
+        else
+        {
+            options = defaultOptions;
+        }
+    }
+
+
     function getTotal()
     {
         var total = 0, i;
 
-        for ( i = 0; i < t.data.length; i++ )
+        for ( i = 0; i < data.length; i++ )
         {
-            total += (typeof t.data[i].value == 'number') ? t.data[i].value : 0;
+            total += (typeof data[i].value == 'number') ? data[i].value : 0;
         }
 
         return total;
@@ -28,18 +64,18 @@ function CanvasPieChart( containerElemId, data, options )
 
     function createCanvas()
     {
-        var canvas = t.doc.createElement('canvas');
+        canvas = options.doc.createElement('canvas');
 
         canvas.id = containerElemId + '-canvas';
-        canvas.width = t.width;
-        canvas.height = t.height;
+        canvas.width = options.width;
+        canvas.height = options.height;
 
-        t.canvasWrapper.appendChild(canvas);
-        t.canvas = canvas;
+        canvasWrapper.appendChild(canvas);
     }
 
 
-    function createPieChart() {
+    function createPieChart()
+    {
         var ctx,
                 arcStartAngle,
                 arcEndAngle,
@@ -54,46 +90,70 @@ function CanvasPieChart( containerElemId, data, options )
                 radius,
                 i,
                 index,
-                val;
+                val,
+                percent;
 
-        ctx = t.canvas.getContext("2d");
-        width = t.canvas.width;
-        height = t.canvas.height;
+        ctx = canvas.getContext("2d");
+        width = canvas.width;
+        height = canvas.height;
         centerX = width / 2;
         centerY = height / 2;
-        radius = width / 2;
+        radius = width / 2 - options.strokeLineWidth; // -1 when strokeLineWidth is not 0
         total = getTotal();
         index = 0;
 
+
+        // Create the pie
         ctx.clearRect( 0, 0, width, height );
 
-        for ( i = 0; i < t.data.length; i++ )
+        for ( i = 0; i < data.length; i++ )
         {
-            label = t.data[i].label;
-            value = t.data[i].value;
-            color = t.data[i].color;
+            label = data[i].label;
+            value = data[i].value;
+            color = data[i].color;
             val = value / total;
+            percent = Math.round( val * 100 );
+
 
             arcStartAngle = Math.PI * ( - 0.5 + 2 * index ); // -0.5 sets set the start to be top
             arcEndAngle = Math.PI * ( - 0.5 + 2 * ( index + val ) );
             
-            ctx.lineWidth = t.strokeLineWidth;
-            ctx.strokeStyle = "#FFFFFF";
-            ctx.fillStyle = color;
+            ctx.lineWidth = options.strokeLineWidth;
+            ctx.strokeStyle = options.strokeLineColor;
 
+            ctx.fillStyle = color;
             ctx.beginPath();
             ctx.moveTo( centerX, centerY );
             ctx.arc( centerX, centerY, radius, arcStartAngle, arcEndAngle, false );
             ctx.lineTo( centerX, centerY );
+
             ctx.fill();
-            ctx.stroke();
             
+            ctx.stroke();
+
+            // Add ticks
+            if ( options.ticks )
+            {
+                ctx.font = options.fontSize + 'px ' + options.font;
+                ctx.fillStyle = options.fontColor;
+
+                var midAngle, labelX, labelY;
+                var tickText = percent + '%';
+                var tickTextWidth = ctx.measureText(tickText).width;
+
+                midAngle = ( arcStartAngle + arcEndAngle ) / 2;
+                labelX = centerX + Math.cos( midAngle ) * radius/1.3 - tickTextWidth/2;
+                labelY = centerY + Math.sin( midAngle ) * radius/1.2;
+
+                ctx.fillText( tickText, labelX, labelY );
+            }
+
             index += val; // increment progress tracker
         }
     }
 
-    
-    function createImageMap()
+
+    function createToolTips()
     {
        var ctx,
                 arcStartAngle,
@@ -116,34 +176,34 @@ function CanvasPieChart( containerElemId, data, options )
                 percent,
                 i,j,x,y;
 
-        t.canvasWrapper.style.position = 'relative';
+        canvasWrapper.style.position = 'relative';
 
-        shim = t.doc.createElement('img');
+        shim = options.doc.createElement('img');
         shim.src = './images/pix.png';
         shim.border = 0;
-        shim.width = t.canvas.width;
-        shim.height = t.canvas.height;
+        shim.width = canvas.width;
+        shim.height = canvas.height;
         shim.style.position = 'absolute';
         shim.style.left = 0;
         shim.style.top = 0;
         shim.useMap = '#' + containerElemId + '-image-map';
 
-        t.canvasWrapper.appendChild(shim);
+        canvasWrapper.appendChild(shim);
 
-        imageMap = t.doc.createElement('map');
+        imageMap = options.doc.createElement('map');
         imageMap.name = containerElemId + '-image-map';
 
-        t.canvasWrapper.appendChild(imageMap);
+        canvasWrapper.appendChild(imageMap);
 
-        radius = t.canvas.width / 2;
+        radius = canvas.width / 2;
         pieVertices = 12; // Does not include the center vertex
         arcIncrementMultiplier = 1 / pieVertices;
         index = 0;
 
-        for ( i = 0; i < t.data.length; i++ )
+        for ( i = 0; i < data.length; i++ )
         {
-            label = t.data[i].label;
-            value = t.data[i].value;
+            label = data[i].label;
+            value = data[i].value;
             val = value / total;
             percent = val * 100;
             arcStartAngle = Math.PI * (- 0.5 + 2 * index); // -0.5 sets set the start to be top
@@ -164,11 +224,11 @@ function CanvasPieChart( containerElemId, data, options )
 			var xEnd = radius + Math.round( Math.cos(arcEndAngle ) * radius );
 			var yEnd = radius + Math.round( Math.sin(arcEndAngle ) * radius );
 
-            area = t.doc.createElement( 'area' );
+            area = options.doc.createElement( 'area' );
             area.shape = 'poly';
             area.coords = radius + ',' + radius + ','  + x + ',' + y + ',' + coord.join( ',' ) +  ',' + xEnd + ',' + yEnd;
 
-            area.title = label + ' (' + Math.round(percent) + '%)';
+            area.title = label;
 
             imageMap.appendChild( area );
 
@@ -176,8 +236,13 @@ function CanvasPieChart( containerElemId, data, options )
         }
     }
 
-    
+
     createCanvas();
     createPieChart();
-    createImageMap();
+
+    if ( options.tooltip )
+    {
+        createToolTips();
+    }
+
 }

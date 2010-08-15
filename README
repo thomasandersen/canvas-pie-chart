@@ -2,6 +2,14 @@ Canvas Pie Chart
 ================
 A pie chart JavaScript library
 
+Tested with:
+    - Firefox 3.6
+    - Safari 5
+    - Chrome 5
+
+Works in Opera except for labels.
+
+
 Thanks to Greg Houston (http://greghoustondesign.com/) for the ImageMap solution.
 
 NOTE: This is a work in progress and must not be used in production enviroments.

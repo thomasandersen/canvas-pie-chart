@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Canvas Pie Chart</title>
-    <script type="text/javascript" src="./js/canvas-pie-chart.js">//</script>
+    <script type="text/javascript" src="js/CanvasPieChart.js">//</script>
 </head>
 <body>
-<h1>Canvas Pie Chart</h1>
+<h1>CanvasPieChart Examples</h1>
 <section>
+    <h3>Browser Usage June 2010</h3>
     <div id="canvas-container-1">
         <!-- -->
     </div>
+    <h3>Residential Energy Costs</h3>
     <div id="canvas-container-2">
         <!-- -->
     </div>
+    <h3>Sales</h3>
     <div id="canvas-container-3">
         <!-- -->
     </div>
+    <h3>Federal Funds</h3>
+
     <div id="canvas-container-4">
         <!-- -->
     </div>
 
     <script type="text/javascript">
-        var exampleData_1 = [
+        var data_browserUsage = [
             { 'label' : 'Firefox', 'value' : 39.1, 'color' : '#6685A3' },
             { 'label' : 'Safari', 'value' : 2.2, 'color' : '#99AEC2' },
             { 'label' : 'All others', 'value' : 4.9, 'color' : '#CCD7E1' },
@@ -30,12 +35,15 @@
             { 'label' : 'IE 7', 'value' : 24.9, 'color' : '#002F4D' }
 	    ];
 
-        var canvasPieChart_1 = new CanvasPieChart( 'canvas-container-1', exampleData_1, {
-            'width': 400,
-            'height' : 400
+        var canvasPieChart_1 = new CanvasPieChart( 'canvas-container-1', data_browserUsage, {
+            'width': 300,
+            'height' : 300,
+            'strokeLineColor' : '#00FFFF',
+            'font' : 'Tahoma',
+            'fontSize' : 14
         } );
 
-        var exampleData_2 = [
+        var data_Residential_Energy_Costs = [
 	    	{ 'label' : 'Other', 'value' : 8, 'color' : '#009AD5' },
 	    	{ 'label' : 'Heat spacing', 'value' : 31, 'color' : '#D98219' },
 	    	{ 'label' : 'Space cooling', 'value' : 12, 'color' : '#008B43' },
@@ -46,32 +54,46 @@
 	    	{ 'label' : 'Refrigeration', 'value' : 12, 'color' : '#D9181F' }
 	    ];
 
-        var canvasPieChart_2 = new CanvasPieChart( 'canvas-container-2', exampleData_2, {
+        var canvasPieChart_2 = new CanvasPieChart( 'canvas-container-2', data_Residential_Energy_Costs, {
+            'width': 250,
+            'height' : 250,
+            'strokeLineWidth' : 0
+        } );
+
+        var data_Sales = [
+	    	{ 'label' : 'Bananas', 'value' : 37, 'color' : '#5C44E2' },
+	    	{ 'label' : 'Oranges', 'value' : 31, 'color' : '#EB4947' },
+	    	{ 'label' : 'Apples', 'value' : 18, 'color' : '#EBED42' },
+	    	{ 'label' : 'Pears', 'value' : 12, 'color' : '#47D95D' }
+	    ];
+
+        var canvasPieChart_3 = new CanvasPieChart( 'canvas-container-3', data_Sales, {
             'width': 200,
-            'height' : 200
+            'height' : 200,
+            'fontSize' : 8,
+            'strokeLineWidth' : 4,
+            'fontColor' : '#000000'
         } );
 
-        var exampleData_3 = [
-	    	{ 'label' : 'Asia', 'value' : 116.006, 'color' : '#FF9900' },
-	    	{ 'label' : 'Americas', 'value' : 149.759, 'color' : '#3366FF' },
-	    	{ 'label' : 'Europe', 'value' : 97.387, 'color' : '#339966' }
+        var exampleData_Federal_Funds = [
+	    	{ 'label' : 'HUMAN RESOURCES', 'value' : 30, 'color' : '#000000' },
+	    	{ 'label' : 'GENERAL GOVERMENT', 'value' : 11, 'color' : '#000000' },
+	    	{ 'label' : 'PHYSICAL RESOURCES', 'value' : 5, 'color' : '#000000' },
+	    	{ 'label' : 'CURRENT MILITARY', 'value' : 36, 'color' : '#C51F61' },
+	    	{ 'label' : 'PAST MILITARY', 'value' : 18, 'color' : '#C51F61' }
 	    ];
 
-        var canvasPieChart_3 = new CanvasPieChart( 'canvas-container-3', exampleData_3, {
-            'width': 50,
-            'height' : 50
+        var canvasPieChart_4 = new CanvasPieChart( 'canvas-container-4', exampleData_Federal_Funds, {
+            'width': 350,
+            'height' : 350,
+            'font' : 'Arial',
+            'fontColor' : '#FFFFFF',
+            'strokeLineWidth' : 3,
+            'strokeLineColor' : '#FFFFFF',
+            'fontSize' : 18
         } );
-
-        var exampleData_4 = [
-	    	{ 'label' : 'Asia', 'value' : 116.006, 'color' : '#FF9900' },
-	    	{ 'label' : 'Americas', 'value' : 149.759, 'color' : '#FF9900' },
-	    	{ 'label' : 'Europe', 'value' : 97.387, 'color' : '#339966' }
-	    ];
-
-        var canvasPieChart_4 = new CanvasPieChart( 'canvas-container-4', exampleData_4, {
-            'width': 300,
-            'height' : 300
-        } );
+        
+        
     </script>
 </section>
 </body>
