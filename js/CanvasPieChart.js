@@ -16,10 +16,11 @@ function CanvasPieChart( containerElemId, data, userOptions )
         strokeLineWidth : 2,
         strokeLineColor : '#FFFFFF',
         ticks : true,
-        tooltip : true,
         font : 'Arial',
         fontSize : 11,
-        fontColor : '#FFFFFF'
+        fontColor : '#FFFFFF',
+        sectorClick : null,
+        sectorMouseOver : null
     };
     var options = {};
 
@@ -153,7 +154,7 @@ function CanvasPieChart( containerElemId, data, userOptions )
     }
 
 
-    function createToolTips()
+    function createImageMap()
     {
        var ctx,
                 arcStartAngle,
@@ -228,7 +229,25 @@ function CanvasPieChart( containerElemId, data, userOptions )
             area.shape = 'poly';
             area.coords = radius + ',' + radius + ','  + x + ',' + y + ',' + coord.join( ',' ) +  ',' + xEnd + ',' + yEnd;
 
-            area.title = label;
+            //area.title = label;
+            area.data = data[i];
+            area.data.key = i;
+
+            if ( options.sectorClick )
+            {
+                area.style.cursor = 'pointer';
+
+                area.addEventListener('click', function(evt) {
+                    return options.sectorClick(evt, this.data);
+                }, false);
+            }
+
+            if ( options.sectorMouseOver )
+            {
+                area.addEventListener('mouseover', function(evt) {
+                    return options.sectorMouseOver(evt, this.data);
+                }, false);
+            }
 
             imageMap.appendChild( area );
 
@@ -239,10 +258,6 @@ function CanvasPieChart( containerElemId, data, userOptions )
 
     createCanvas();
     createPieChart();
-
-    if ( options.tooltip )
-    {
-        createToolTips();
-    }
+    createImageMap();
 
 }

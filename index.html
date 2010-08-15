@@ -40,7 +40,18 @@
             'height' : 300,
             'strokeLineColor' : '#00FFFF',
             'font' : 'Tahoma',
-            'fontSize' : 14
+            'fontSize' : 14,
+            'sectorClick' : function(evt, data) {
+                var d = '';
+                d += 'label: ' + data.label + '\n';
+                d += 'value: ' + data.value + '\n';
+                d += 'color: ' + data.color;
+
+                alert(d);
+            },
+            'sectorMouseOver' : function(evt, data) {
+                evt.target.title = data.label + ' (' + data.value + ')';
+            }
         } );
 
         var data_Residential_Energy_Costs = [
