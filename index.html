@@ -5,11 +5,17 @@
     <title>Canvas Pie Chart</title>
     <script type="text/javascript" src="js/CanvasPieChart.js">//</script>
 </head>
+
 <body>
-<h1>CanvasPieChart Examples</h1>
+<h1>Canvas Pie Chart Examples</h1>
 <section>
     <h3>Browser Usage June 2010</h3>
     <div id="canvas-container-1">
+        <!-- -->
+    </div>
+    <h3>Federal Funds</h3>
+
+    <div id="canvas-container-4">
         <!-- -->
     </div>
     <h3>Residential Energy Costs</h3>
@@ -18,11 +24,6 @@
     </div>
     <h3>Sales</h3>
     <div id="canvas-container-3">
-        <!-- -->
-    </div>
-    <h3>Federal Funds</h3>
-
-    <div id="canvas-container-4">
         <!-- -->
     </div>
 
@@ -36,11 +37,11 @@
 	    ];
 
         var canvasPieChart_1 = new CanvasPieChart( 'canvas-container-1', data_browserUsage, {
-            'width': 300,
-            'height' : 300,
-            'strokeLineColor' : '#00FFFF',
+            'width': 230,
+            'height' : 230,
+            'strokeLineColor' : '#FFF',
             'font' : 'Tahoma',
-            'fontSize' : 14,
+            'fontSize' : 10,
             'sectorClick' : function(evt, data) {
                 var d = '';
                 d += 'label: ' + data.label + '\n';
@@ -51,7 +52,7 @@
             },
             'sectorMouseOver' : function(evt, data) {
                 evt.target.title = data.label + ' (' + data.value + ')';
-            }
+            }   
         } );
 
         var data_Residential_Energy_Costs = [
@@ -81,7 +82,7 @@
         var canvasPieChart_3 = new CanvasPieChart( 'canvas-container-3', data_Sales, {
             'width': 200,
             'height' : 200,
-            'fontSize' : 8,
+            'fontSize' : 11,
             'strokeLineWidth' : 4,
             'fontColor' : '#000000'
         } );
@@ -95,16 +96,13 @@
 	    ];
 
         var canvasPieChart_4 = new CanvasPieChart( 'canvas-container-4', exampleData_Federal_Funds, {
-            'width': 350,
-            'height' : 350,
+            'width': 280,
+            'height' : 280,
             'font' : 'Arial',
-            'fontColor' : '#FFFFFF',
             'strokeLineWidth' : 3,
             'strokeLineColor' : '#FFFFFF',
-            'fontSize' : 18
+            'fontSize' : 13
         } );
-        
-        
     </script>
 </section>
 </body>
