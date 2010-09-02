@@ -11,6 +11,7 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
 {
     var defaultOptions = {
         doc : document,
+        imgDir : '',
         width : 400,
         height : 400,
         strokeLineWidth : 2,
@@ -200,7 +201,7 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
         canvasWrapper.style.position = 'relative';
 
         shim = options.doc.createElement('img');
-        shim.src = './images/pix.png';
+        shim.src = options.imgDir + 'images/pix.png';
         shim.border = 0;
         shim.width = canvas.width;
         shim.height = canvas.height;
@@ -278,5 +279,4 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
     createCanvas();
     createPieChart();
     createImageMap();
-
 }
