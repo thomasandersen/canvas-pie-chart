@@ -23,7 +23,7 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
         sectorClick : null,
         sectorMouseOver : null,
         sectorTextRendrer : function( data, total ){
-            return Math.round(data.value / total * 100) + '%';                                        
+            return Math.round( data.value / total * 100 ) + '%';                                        
         }
     };
 
@@ -73,14 +73,14 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
 
     function createCanvas()
     {
-        canvas = options.doc.createElement('canvas');
+        canvas = options.doc.createElement( 'canvas' );
         canvas.id = canvasWrapperId + '-canvas';
         canvas.width = options.width;
         canvas.height = options.height;
 
-        canvasWrapper.appendChild(canvas);
+        canvasWrapper.appendChild( canvas );
 
-        ctx = canvas.getContext("2d");
+        ctx = canvas.getContext( '2d' );
     }
 
 
@@ -160,8 +160,8 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
 
                 ctx.font = options.fontSize + 'px ' + options.font;
 
-                tickText = options.sectorTextRendrer(data[i], total);
-                tickTextWidth = ctx.measureText(tickText).width;
+                tickText = options.sectorTextRendrer( data[i], total );
+                tickTextWidth = ctx.measureText( tickText ).width;
 
                 midAngle = ( arcStartAngle + arcEndAngle ) / 2;
                 labelX = centerX + Math.cos( midAngle ) * radius/1.2 - tickTextWidth/2;
@@ -200,7 +200,7 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
 
         canvasWrapper.style.position = 'relative';
 
-        shim = options.doc.createElement('img');
+        shim = options.doc.createElement( 'img' );
         shim.src = options.imgDir + 'images/pix.png';
         shim.border = 0;
         shim.width = canvas.width;
@@ -212,10 +212,10 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
 
         canvasWrapper.appendChild(shim);
 
-        imageMap = options.doc.createElement('map');
+        imageMap = options.doc.createElement( 'map' );
         imageMap.name = canvasWrapperId + '-image-map';
 
-        canvasWrapper.appendChild(imageMap);
+        canvasWrapper.appendChild( imageMap );
 
         radius = canvas.width / 2;
         pieVertices = 12; // Does not include the center vertex
@@ -228,8 +228,8 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
             value = data[i].value;
             val = value / total;
             percent = val * 100;
-            arcStartAngle = Math.PI * (- 0.5 + 2 * index); // -0.5 sets set the start to be top
-            arcEndAngle = Math.PI * (- 0.5 + 2 * (index + val));
+            arcStartAngle = Math.PI * ( - 0.5 + 2 * index ); // -0.5 sets set the start to be top
+            arcEndAngle = Math.PI * ( - 0.5 + 2 * ( index + val ) );
             arcIncrement = (arcEndAngle - arcStartAngle) * arcIncrementMultiplier;
 			x = radius + Math.round(Math.cos(arcStartAngle) * radius);
 			y = radius + Math.round(Math.sin(arcStartAngle) * radius);
@@ -258,16 +258,16 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
             {
                 area.style.cursor = 'pointer';
 
-                area.addEventListener('click', function(evt) {
-                    return options.sectorClick(evt, this.data);
-                }, false);
+                area.addEventListener( 'click', function( evt ) {
+                    return options.sectorClick( evt, this.data );
+                }, false );
             }
 
             if ( options.sectorMouseOver )
             {
-                area.addEventListener('mouseover', function(evt) {
-                    return options.sectorMouseOver(evt, this.data);
-                }, false);
+                area.addEventListener( 'mouseover', function( evt ) {
+                    return options.sectorMouseOver( evt, this.data );
+                }, false );
             }
 
             imageMap.appendChild( area );
