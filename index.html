@@ -4,31 +4,25 @@
     <meta charset="UTF-8"/>
     <title>Canvas Pie Chart</title>
     <script type="text/javascript" src="js/CanvasPieChart.js">//</script>
+
+    <style type="text/css">
+        body,th, td { font: 100% Arial }
+        th { font-weight: bold; text-align: left }
+        pre { background-color: #efefef; padding: .5em }
+    </style>
 </head>
 
 <body>
-<h1>Canvas Pie Chart Examples</h1>
-<section>
-    <h3>Browser Usage June 2010</h3>
-    <div id="canvas-container-1">
-        <!-- -->
-    </div>
-    <h3>Federal Funds</h3>
+<h1>Canvas Pie Chart Example</h1>
+<div>
 
-    <div id="canvas-container-4">
-        <!-- -->
-    </div>
-    <h3>Residential Energy Costs</h3>
-    <div id="canvas-container-2">
-        <!-- -->
-    </div>
-    <h3>Sales</h3>
-    <div id="canvas-container-3">
+    <h3>Browser Usage June 2010</h3>
+    <div id="canvas-pie-chart-browser-usage">
         <!-- -->
     </div>
 
     <script type="text/javascript">
-        var data_browserUsage = [
+        var browserUsageData = [
             { 'label' : 'Firefox', 'value' : 39.1, 'color' : '#6685A3' },
             { 'label' : 'Safari', 'value' : 2.2, 'color' : '#99AEC2' },
             { 'label' : 'All others', 'value' : 4.9, 'color' : '#CCD7E1' },
@@ -36,74 +30,155 @@
             { 'label' : 'IE 7', 'value' : 24.9, 'color' : '#002F4D' }
 	    ];
 
-        var canvasPieChart_1 = new CanvasPieChart( 'canvas-container-1', data_browserUsage, {
-            'width': 230,
-            'height' : 230,
-            'strokeLineColor' : '#FFF',
-            'font' : 'Tahoma',
-            'fontSize' : 10,
-            'sectorClick' : function(evt, data) {
-                var d = '';
-                d += 'label: ' + data.label + '\n';
-                d += 'value: ' + data.value + '\n';
-                d += 'color: ' + data.color;
-
-                alert(d);
+        var canvasPieChart = new CanvasPieChart( 'canvas-pie-chart-browser-usage', browserUsageData,
+        {
+            'width'             : 330,
+            'height'            : 330,
+            'strokeLineColor'   : '#FFF',
+            'font'              : 'Tahoma',
+            'fontSize'          : 12,
+            'onSectorClick'     : function( evt, data )
+            {
+                var alertText = '';
+                alertText += 'label: ' + data.label + '\n';
+                alertText += 'value: ' + data.value + '\n';
+                alertText += 'color: ' + data.color;
+                alert( alertText );
             },
-            'sectorMouseOver' : function(evt, data) {
+            'onSectorMouseOver' : function( evt, data )
+            {
                 evt.target.title = data.label + ' (' + data.value + ')';
-            }   
-        } );
-
-        var data_Residential_Energy_Costs = [
-	    	{ 'label' : 'Other', 'value' : 8, 'color' : '#009AD5' },
-	    	{ 'label' : 'Heat spacing', 'value' : 31, 'color' : '#D98219' },
-	    	{ 'label' : 'Space cooling', 'value' : 12, 'color' : '#008B43' },
-	    	{ 'label' : 'Water heating', 'value' : 12, 'color' : '#0D68A9' },
-	    	{ 'label' : 'Lighting', 'value' : 12, 'color' : '#F3C208' },
-	    	{ 'label' : 'Computer and electronic', 'value' : 12, 'color' : '#861F84' },
-	    	{ 'label' : 'Appliances', 'value' : 12, 'color' : '#7CB237' },
-	    	{ 'label' : 'Refrigeration', 'value' : 12, 'color' : '#D9181F' }
-	    ];
-
-        var canvasPieChart_2 = new CanvasPieChart( 'canvas-container-2', data_Residential_Energy_Costs, {
-            'width': 250,
-            'height' : 250,
-            'strokeLineWidth' : 0
-        } );
-
-        var data_Sales = [
-	    	{ 'label' : 'Bananas', 'value' : 37, 'color' : '#5C44E2' },
-	    	{ 'label' : 'Oranges', 'value' : 31, 'color' : '#EB4947' },
-	    	{ 'label' : 'Apples', 'value' : 18, 'color' : '#EBED42' },
-	    	{ 'label' : 'Pears', 'value' : 12, 'color' : '#47D95D' }
-	    ];
-
-        var canvasPieChart_3 = new CanvasPieChart( 'canvas-container-3', data_Sales, {
-            'width': 200,
-            'height' : 200,
-            'fontSize' : 11,
-            'strokeLineWidth' : 4,
-            'fontColor' : '#000000'
-        } );
-
-        var exampleData_Federal_Funds = [
-	    	{ 'label' : 'HUMAN RESOURCES', 'value' : 30, 'color' : '#000000' },
-	    	{ 'label' : 'GENERAL GOVERMENT', 'value' : 11, 'color' : '#000000' },
-	    	{ 'label' : 'PHYSICAL RESOURCES', 'value' : 5, 'color' : '#000000' },
-	    	{ 'label' : 'CURRENT MILITARY', 'value' : 36, 'color' : '#C51F61' },
-	    	{ 'label' : 'PAST MILITARY', 'value' : 18, 'color' : '#C51F61' }
-	    ];
-
-        var canvasPieChart_4 = new CanvasPieChart( 'canvas-container-4', exampleData_Federal_Funds, {
-            'width': 280,
-            'height' : 280,
-            'font' : 'Arial',
-            'strokeLineWidth' : 3,
-            'strokeLineColor' : '#FFFFFF',
-            'fontSize' : 13
+            },
+            'sectorTextRendrer' : function( data, total )
+            {
+                return data.label + ' ' + Math.round( data.value / total * 100 ) + '%';
+            }
         } );
     </script>
-</section>
+</div>
+<h2>Setup</h2>
+<h3>HTML</h3>
+
+    <pre>
+&lt;div id="canvas-pie-chart-browser-usage"&gt;
+    This browser does not support the canvas tag
+&lt;/div&gt;</pre>
+<h3>JavaScript</h3>
+    <pre>
+// Create some data
+var browserUsageData = [
+    // Object: label, value, color
+    { 'label' : 'Firefox', 'value' : 39.1, 'color' : '#6685A3' },
+    { 'label' : 'Safari', 'value' : 2.2, 'color' : '#99AEC2' },
+    { 'label' : 'All others', 'value' : 4.9, 'color' : '#CCD7E1' },
+    { 'label' : 'IE 6', 'value' : 29.9, 'color' : '#2B5564' },
+    { 'label' : 'IE 7', 'value' : 24.9, 'color' : '#002F4D' }
+];
+
+// Create a new instance of CanvasPieChart
+var canvasPieChart = new CanvasPieChart( 'canvas-pie-chart-browser-usage', browserUsageData,
+{
+    'width'             : 330,
+    'height'            : 330,
+    'strokeLineColor'   : '#FFF',
+    'font'              : 'Tahoma',
+    'fontSize'          : 12,
+    'onSectorClick'     : function( evt, data )
+    {
+        var alertText = '';
+        alertText += 'label: ' + data.label + '\n';
+        alertText += 'value: ' + data.value + '\n';
+        alertText += 'color: ' + data.color;
+        alert( alertText );
+    },
+    'onSectorMouseOver' : function( evt, data )
+    {
+        evt.target.title = data.label + ' (' + data.value + ')';
+    },
+    'sectorTextRendrer' : function( data, total )
+    {
+        return data.label + ' ' + Math.round( data.value / total * 100 ) + '%';
+    }
+
+} ); </pre>
+<h2>Config</h2>
+
+<table style="width:50%">
+    <thead>
+    <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Default value</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>width</td>
+        <td>Number</td>
+        <td>400</td>
+    </tr>
+    <tr>
+        <td>height</td>
+        <td>Number</td>
+        <td>400</td>
+    </tr>
+    <tr>
+        <td>doc</td>
+        <td>Object</td>
+        <td>document</td>
+    </tr>
+    <tr>
+        <td>imgDir</td>
+        <td>String</td>
+        <td>images/</td>
+    </tr>
+    <tr>
+        <td>strokeLineWidth</td>
+        <td>Number</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>strokeLineColor</td>
+        <td>String</td>
+        <td>#ffffff</td>
+    </tr>
+    <tr>
+        <td>ticks</td>
+        <td>Boolean</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>font</td>
+        <td>String</td>
+        <td>Arial</td>
+    </tr>
+    <tr>
+        <td>fontSize</td>
+        <td>Number</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>fontColor</td>
+        <td>String</td>
+        <td>#ffffff</td>
+    </tr>
+    <tr>
+        <td>onSectorMouseOver</td>
+        <td>Function</td>
+        <td>function() {}</td>
+    </tr>
+    <tr>
+        <td>onSectorClick</td>
+        <td>Function</td>
+        <td>function() {}</td>
+    </tr>
+    <tr>
+        <td>sectorTextRendrer</td>
+        <td>Function</td>
+        <td>function( data, total ){ return Math.round( data.value / total * 100 ) + '%'; }</td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

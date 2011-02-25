@@ -11,7 +11,7 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
 {
     var defaultOptions = {
         doc : document,
-        imgDir : '',
+        imgDir : 'images/',
         width : 400,
         height : 400,
         strokeLineWidth : 2,
@@ -20,8 +20,8 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
         font : 'Arial',
         fontSize : 11,
         fontColor : '#FFFFFF',
-        sectorClick : null,
-        sectorMouseOver : null,
+        onSectorMouseOver : function() {},
+        onSectorClick : function() {},
         sectorTextRendrer : function( data, total ){
             return Math.round( data.value / total * 100 ) + '%';                                        
         }
@@ -201,7 +201,7 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
         canvasWrapper.style.position = 'relative';
 
         shim = options.doc.createElement( 'img' );
-        shim.src = options.imgDir + 'images/pix.png';
+        shim.src = options.imgDir + 'pix.png';
         shim.border = 0;
         shim.width = canvas.width;
         shim.height = canvas.height;
@@ -254,19 +254,19 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
             area.data = data[i];
             area.data.key = i;
 
-            if ( options.sectorClick )
+            if ( options.onSectorClick )
             {
                 area.style.cursor = 'pointer';
 
                 area.addEventListener( 'click', function( evt ) {
-                    return options.sectorClick( evt, this.data );
+                    return options.onSectorClick( evt, this.data );
                 }, false );
             }
 
-            if ( options.sectorMouseOver )
+            if ( options.onSectorMouseOver )
             {
                 area.addEventListener( 'mouseover', function( evt ) {
-                    return options.sectorMouseOver( evt, this.data );
+                    return options.onSectorMouseOver( evt, this.data );
                 }, false );
             }
 
