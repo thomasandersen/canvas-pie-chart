@@ -8,8 +8,7 @@ Tested with:
     - Chrome 5
 
 Works in Opera except for labels.
-
-Can be used in XUL enviroments
+Can be used in XUL enviroments.
 
 Thanks to Greg Houston (http://greghoustondesign.com/) for the ImageMap solution.
 
