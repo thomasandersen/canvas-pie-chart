@@ -1,6 +1,6 @@
 Canvas Pie Chart
 ================
-A pie chart JavaScript library
+A simple pie chart JavaScript library
 
 Tested with:
     - Firefox 3.6
@@ -9,9 +9,8 @@ Tested with:
 
 Works in Opera except for labels.
 
+Can be used in XUL enviroments
 
 Thanks to Greg Houston (http://greghoustondesign.com/) for the ImageMap solution.
 
 Demo: http://www.mr-andersen.no/_public/html/canvas-pie-chart/index.html
-
-NOTE: This is a work in progress and must not be used in production enviroments.
