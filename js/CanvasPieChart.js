@@ -7,7 +7,7 @@
  * Contributing: http://github.com/thomasandersen/canvas-pie-chart
  */
 
-function CanvasPieChart( canvasWrapperId, userData, userOptions )
+function CanvasPieChart( elementToAppendTo, userData, userOptions )
 {
     var defaultOptions = {
         doc : document,
@@ -34,7 +34,7 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
     var data = userData || [],
         canvas = null,
         ctx = null,
-        canvasWrapper = options.doc.getElementById( canvasWrapperId ),
+        canvasWrapper = options.doc.getElementById( elementToAppendTo ),
         total = getTotal();
 
 
@@ -74,7 +74,7 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
     function createCanvas()
     {
         canvas = options.doc.createElement( 'canvas' );
-        canvas.id = canvasWrapperId + '-canvas';
+        canvas.id = elementToAppendTo + '-canvas';
         canvas.width = options.width;
         canvas.height = options.height;
 
@@ -208,12 +208,12 @@ function CanvasPieChart( canvasWrapperId, userData, userOptions )
         shim.style.position = 'absolute';
         shim.style.left = 0;
         shim.style.top = 0;
-        shim.useMap = '#' + canvasWrapperId + '-image-map';
+        shim.useMap = '#' + elementToAppendTo + '-image-map';
 
         canvasWrapper.appendChild(shim);
 
         imageMap = options.doc.createElement( 'map' );
-        imageMap.name = canvasWrapperId + '-image-map';
+        imageMap.name = elementToAppendTo + '-image-map';
 
         canvasWrapper.appendChild( imageMap );
 
