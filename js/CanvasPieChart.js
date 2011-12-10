@@ -20,6 +20,7 @@ function CanvasPieChart( elementId, userData, userOptions )
         font : 'Arial',
         fontSize : 11,
         fontColor : '#FFFFFF',
+        imageMap : true,
         onSectorMouseOver : function() {},
         onSectorClick : function() {},
         sectorTextRendrer : function( data, total ){
@@ -138,7 +139,10 @@ function CanvasPieChart( elementId, userData, userOptions )
             ctx.arc( centerX, centerY, radius, arcStartAngle, arcEndAngle, false );
             ctx.lineTo( centerX, centerY );
             ctx.fill();
-            ctx.stroke();
+            if ( options.strokeLineWidth != 0) // stroke appears even if its value is 0
+            {
+                ctx.stroke();
+            }
 
             index += val; // increment progress tracker
         }
@@ -278,5 +282,8 @@ function CanvasPieChart( elementId, userData, userOptions )
 
     createCanvas();
     createPieChart();
-    createImageMap();
+    if ( options.imageMap ) // sometimes, the imageMap isn't necesary
+    {
+        createImageMap();
+    }
 }
